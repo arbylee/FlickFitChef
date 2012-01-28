@@ -11,18 +11,24 @@
   fi
   sudo yum install -y gcc
 
-if [ "`gem sources | grep github`" = "" ]; then
+if [ "`sudo gem sources | grep github`" = "" ]; then
 	sudo gem sources -a http://gems.github.com/
 else
 	echo "Skipping github, already in sources"
 fi
 
-if [ "`gem sources | grep opscode`" = "" ]; then
+if [ "`sudo gem sources | grep opscode`" = "" ]; then
 	sudo gem sources -a http://gems.opscode.com/
 else
 	echo "Skipping opscode, already in sources"
 fi
 
-	sudo gem install ohai chef --no-rdoc --no-ri
+NULL=`sudo gem which chef`
+RETURNVAL=$?
+if [[ $RETURNVAL -eq "1" ]]; then
+  sudo gem install ohai chef --no-rdoc --no-ri
+else
+  echo "Chef already installed"
+fi
 
 ### sudo bash -lc "chef-solo -l debug -c ${ROLE}.rb -j ${ROLE}.json -r ${RECIPEURL}"
