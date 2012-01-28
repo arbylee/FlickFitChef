@@ -1,5 +1,6 @@
 #!/bin/sh
 
+CHEF_URL="git://github.com/arbylee/FlickFitChef.git"
   sudo yum install -y git-core
   
   sudo yum install -y rubygems
@@ -30,5 +31,9 @@ if [[ $RETURNVAL -eq "1" ]]; then
 else
   echo "Chef already installed"
 fi
+
+rm -rf /tmp/FlickFitChef
+cd /tmp
+git clone $CHEF_URL
 
 ### sudo bash -lc "chef-solo -l debug -c ${ROLE}.rb -j ${ROLE}.json -r ${RECIPEURL}"
