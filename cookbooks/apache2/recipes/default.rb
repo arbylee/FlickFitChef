@@ -1,3 +1,3 @@
-package "apache2" do
-  name "apache2"
+package "httpd" do
+  action :install
 end
