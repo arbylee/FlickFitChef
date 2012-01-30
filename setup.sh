@@ -7,6 +7,7 @@ CHEF_URL="git://github.com/arbylee/FlickFitChef.git"
 
   sudo yum install -y ruby-devel.x86_64
   sudo yum install -y make 
+  sudo yum install -y sqlite-devel.x86_64
   if [ ! -f /etc/profile.d/rubygems-paths.sh ]; then
     sudo bash -c "echo 'export PATH=/var/lib/gems/1.8/bin:\$PATH' > /etc/profile.d/rubygems-paths.sh"
   fi
